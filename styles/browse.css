@@ -1,0 +1,177 @@
+@import url("./card-styles.css");
+
+@font-face {
+    font-family: Goldplay;
+    font-weight: 100;
+    src: url("../fonts/Goldplay-Thin.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: Goldplay;
+    font-weight: 200;
+    src: url("../fonts/Goldplay-Light.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: Goldplay;
+    font-weight: 300;
+    src: url("../fonts/Goldplay-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: Goldplay;
+    font-weight: 400;
+    src: url("../fonts/Goldplay-Medium.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: Goldplay;
+    font-weight: 500;
+    src: url("../fonts/Goldplay-SemiBold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: Goldplay;
+    font-weight: 600;
+    src: url("../fonts/Goldplay-Bold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: Goldplay;
+    font-weight: 700;
+    src: url("../fonts/Goldplay-Black.ttf") format("truetype");
+}
+
+
+:root {
+    font-size: 62.5%;
+    --yellow: rgb(255, 225, 101);
+    --pink: rgba(255, 84, 226, 1);
+    --white: rgb(244, 244, 245);
+    --subtext: rgb(157, 157, 158);
+    --black: rgba(0, 0, 0, 0.92)
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--white);
+    width: 100%;
+}
+
+.search-wrapper {
+    background-color: var(--black);
+}
+
+#search-container {
+    display: flex;
+    align-items: center;
+    padding: 2rem 0;
+    gap: 2rem;
+    width: 80%;
+    margin: 0 auto;
+}
+
+#search-bar {
+    width: 100%;
+    max-width: 500px;
+    padding: 1rem;
+    border: 2px solid var(--white);
+    border-radius: 5px;
+    font-family: Goldplay;
+    font-size: 1.6rem;
+    color: var(--black);
+    margin-left: 1rem;
+    box-shadow: 0 0 2px var(--white);
+    transition: box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+#search-bar:focus {
+    outline: none;
+    box-shadow: 0 0 7px var(--white);
+}
+
+#search-bar::placeholder {
+    color: var(--black);
+}
+
+#search-container label {
+    font-family: Goldplay;
+    font-size: 1.6rem;
+    color: var(--white);
+}
+
+#search-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+#sort-options, #series-options {
+    width: 100%;
+    max-width: max-content;
+    padding: 1rem;
+    border: 1px solid var(--black);
+    border-radius: 5px;
+    font-family: Goldplay;
+    font-size: 1.6rem;
+    color: var(--black);
+    padding: 1rem 2.5rem 1rem 1rem; /* Increase the right padding */
+    background-color: var(--white);
+    appearance: none; /* Remove the default browser styles */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="black" d="M2 0L0 2h4L2 0zm0 5L0 3h4l-2 2z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right .7em top 50%, 0 0; 
+    background-size: .65em auto, 100%;
+}
+
+#grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 1rem;
+    margin: 2rem;
+}
+
+#grid .grid-item {
+    flex: 1 0 20%; /* Each item will take up 20% of the row width */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+    border: 2px solid var(--black);
+    border-radius: .5rem;
+    text-align: center;
+    text-decoration: none;
+    color: var(--black);
+    margin-bottom: 1rem; /* Add some space at the bottom of each item */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Add a drop shadow */
+}
+
+#grid .grid-item:hover {
+    transform: translateY(-5px); /* Move Up */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Increase the drop shadow when hovered */
+}
+
+#grid .logo {
+    width: 100px; /* Reduce the width of the logo images */
+    height: auto; /* Maintain the aspect ratio of the logo images */
+}
+
+#grid .symbol {
+    width: 40px; /* Reduce the width of the symbol images */
+    height: auto; /* Maintain the aspect ratio of the symbol images */
+}
+
+#grid .grid-item .set-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    margin-top: 1rem;
+    
+}
