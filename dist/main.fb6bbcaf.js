@@ -4472,7 +4472,7 @@ function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Sym
 function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 _pokemontcgsdk.default.configure({
-  apiKey: 'd3eb1c23-a198-4e68-beff-6db7bea1e4b9'
+  apiKey: "d3eb1c23-a198-4e68-beff-6db7bea1e4b9"
 });
 var sets = [];
 function fetchSetData() {
@@ -4720,7 +4720,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62192" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62252" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

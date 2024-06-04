@@ -2,7 +2,7 @@ import pokemon from 'pokemontcgsdk';
 import twilightMasqueradeLogo from '../assets/sv6-logo.png';
 import loadingGif from '../assets/loading-gif.gif';
 
-pokemon.configure({ apiKey: 'd3eb1c23-a198-4e68-beff-6db7bea1e4b9' });
+pokemon.configure({ apiKey: process.env.API_KEY });
 let sets = [];
 
 function fetchSetData() {
