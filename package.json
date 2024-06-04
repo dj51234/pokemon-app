@@ -11,6 +11,8 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "cards": "^2.0.3",
+    "css": "^3.0.0",
     "pokemontcgsdk": "^2.0.0"
   },
   "devDependencies": {

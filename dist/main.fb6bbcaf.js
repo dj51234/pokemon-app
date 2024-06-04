@@ -4456,11 +4456,14 @@ var _default = exports.default = {
 };
 },{"./configure":"node_modules/pokemontcgsdk/es/configure.js","./queryBuilder":"node_modules/pokemontcgsdk/es/queryBuilder.js"}],"assets/sv6-logo.png":[function(require,module,exports) {
 module.exports = "/sv6-logo.e59a7798.png";
+},{}],"assets/loading-gif.gif":[function(require,module,exports) {
+module.exports = "/loading-gif.312b4b3f.gif";
 },{}],"js/main.js":[function(require,module,exports) {
 "use strict";
 
 var _pokemontcgsdk = _interopRequireDefault(require("pokemontcgsdk"));
 var _sv6Logo = _interopRequireDefault(require("../assets/sv6-logo.png"));
+var _loadingGif = _interopRequireDefault(require("../assets/loading-gif.gif"));
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -4553,6 +4556,16 @@ function fetchSetData() {
       displaySets(filteredSets);
     });
     displaySets(sets);
+
+    // Get the search bar and dropdowns
+    var searchBarInput = document.getElementById('search-bar');
+    var dropdown1 = document.getElementById('sort-options');
+    var dropdown2 = document.getElementById('series-options');
+
+    // Add event listeners to the search bar and dropdowns
+    searchBarInput.addEventListener('input', removeBackButton);
+    dropdown1.addEventListener('change', removeBackButton);
+    dropdown2.addEventListener('change', removeBackButton);
   }).catch(function (error) {
     return console.error(error);
   });
@@ -4560,11 +4573,66 @@ function fetchSetData() {
 function displaySets(filteredSets) {
   var grid = document.getElementById('grid');
   grid.innerHTML = ''; // Clear the grid
+
   filteredSets.forEach(function (set) {
     var item = document.createElement('a');
     item.className = 'grid-item';
     item.href = "#";
     item.innerHTML = "\n            <img src=\"".concat(set.logo, "\" class=\"logo\" alt=\"").concat(set.name, " logo\">\n            <div class=\"set-info\">\n                <img src=\"").concat(set.symbol, "\" class=\"symbol\" alt=\"").concat(set.name, " symbol\">\n                <h2>").concat(set.name, "</h2>\n            </div>\n            <p>Release date: ").concat(set.releaseDate, "</p>\n            <p>ID: ").concat(set.id, "</p>\n        ");
+
+    // Add an event listener to each set item
+    item.addEventListener('click', function (event) {
+      event.preventDefault(); // Prevent the default link behavior
+      grid.innerHTML = '';
+      fetchCardData(set.cardIds); // Fetch the cards for the clicked set
+    });
+    grid.appendChild(item);
+  });
+}
+// pokemon.card.find('base1-1').then(card => {
+//     console.log(card) // "Charizard"
+// })
+function fetchCardData(cardIds) {
+  var grid = document.getElementById('grid');
+
+  // Create a loading message
+  var loadingMessage = document.createElement('img');
+  loadingMessage.className = 'loading-message';
+  loadingMessage.src = _loadingGif.default;
+  grid.appendChild(loadingMessage);
+
+  // Fetch each card using its ID
+  Promise.all(cardIds.map(function (id) {
+    return _pokemontcgsdk.default.card.find(id);
+  })).then(function (cards) {
+    grid.removeChild(loadingMessage); // Remove the loading message
+    displayCards(cards);
+  }).catch(function (error) {
+    grid.removeChild(loadingMessage); // Remove the loading message
+    console.error(error);
+  });
+}
+function displayCards(cards) {
+  var grid = document.getElementById('grid');
+  grid.innerHTML = ''; // Clear the grid
+
+  // Create a "Back" button
+  var backButton = document.createElement('button');
+  backButton.className = 'back-button';
+  backButton.textContent = 'Back to sets';
+  backButton.addEventListener('click', function () {
+    fetchSetData();
+    searchBar.removeChild(backButton);
+  });
+
+  // Append the "Back" button to the search bar div
+  var searchBar = document.getElementById('search-container');
+  searchBar.appendChild(backButton);
+  cards.forEach(function (card) {
+    var item = document.createElement('a');
+    item.className = 'grid-item--card';
+    item.href = "#";
+    item.innerHTML = "\n            <img src=\"".concat(card.images.small, "\" class=\"card-image\" alt=\"").concat(card.name, "\">\n        ");
     grid.appendChild(item);
   });
 }
@@ -4619,7 +4687,15 @@ window.onload = function () {
   // Reset the dropdown's value to its default
   document.getElementById('sort-options').selectedIndex = 0;
 };
-},{"pokemontcgsdk":"node_modules/pokemontcgsdk/es/index.js","../assets/sv6-logo.png":"assets/sv6-logo.png"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+
+// Function to remove the "Back" button
+function removeBackButton() {
+  var backButton = document.querySelector('.back-button');
+  if (backButton) {
+    backButton.parentNode.removeChild(backButton);
+  }
+}
+},{"pokemontcgsdk":"node_modules/pokemontcgsdk/es/index.js","../assets/sv6-logo.png":"assets/sv6-logo.png","../assets/loading-gif.gif":"assets/loading-gif.gif"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -4644,7 +4720,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57416" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62192" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

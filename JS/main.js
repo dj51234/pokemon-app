@@ -1,8 +1,8 @@
 import pokemon from 'pokemontcgsdk';
 import twilightMasqueradeLogo from '../assets/sv6-logo.png';
+import loadingGif from '../assets/loading-gif.gif';
 
 pokemon.configure({ apiKey: 'd3eb1c23-a198-4e68-beff-6db7bea1e4b9' });
-
 let sets = [];
 
 function fetchSetData() {
@@ -26,7 +26,7 @@ function fetchSetData() {
                     cardIds: cardIds
                 }
             });
-
+            
             sets = sortSets(sets, 'asc');
             
             // Extract the unique series names
@@ -73,7 +73,19 @@ function fetchSetData() {
                 const filteredSets = setsToSearch.filter(set => set.name.toLowerCase().includes(event.target.value.toLowerCase()));
                 displaySets(filteredSets);
             });
+
             displaySets(sets);
+
+             // Get the search bar and dropdowns
+            let searchBarInput = document.getElementById('search-bar');
+            let dropdown1 = document.getElementById('sort-options');
+            let dropdown2 = document.getElementById('series-options');
+
+            // Add event listeners to the search bar and dropdowns
+            searchBarInput.addEventListener('input', removeBackButton);
+            dropdown1.addEventListener('change', removeBackButton);
+            dropdown2.addEventListener('change', removeBackButton);
+            
         })
         .catch(error => console.error(error));
 }
@@ -81,6 +93,7 @@ function fetchSetData() {
 function displaySets(filteredSets) {
     let grid = document.getElementById('grid');
     grid.innerHTML = ''; // Clear the grid
+
     filteredSets.forEach(set => {
         let item = document.createElement('a');
         item.className = 'grid-item';
@@ -94,6 +107,66 @@ function displaySets(filteredSets) {
             <p>Release date: ${set.releaseDate}</p>
             <p>ID: ${set.id}</p>
         `;
+
+        // Add an event listener to each set item
+        item.addEventListener('click', (event) => {
+            event.preventDefault(); // Prevent the default link behavior
+            grid.innerHTML = '';
+            fetchCardData(set.cardIds); // Fetch the cards for the clicked set
+        });
+
+        grid.appendChild(item);
+    });
+}
+// pokemon.card.find('base1-1').then(card => {
+//     console.log(card) // "Charizard"
+// })
+function fetchCardData(cardIds) {
+    let grid = document.getElementById('grid');
+    
+    // Create a loading message
+    let loadingMessage = document.createElement('img');
+    loadingMessage.className = 'loading-message';
+    loadingMessage.src = loadingGif;
+    grid.appendChild(loadingMessage);
+
+    // Fetch each card using its ID
+    Promise.all(cardIds.map(id => pokemon.card.find(id)))
+        .then(cards => {
+            grid.removeChild(loadingMessage); // Remove the loading message
+            displayCards(cards);
+        })
+        .catch(error => {
+            grid.removeChild(loadingMessage); // Remove the loading message
+            console.error(error);
+        });
+}
+
+function displayCards(cards) {
+    let grid = document.getElementById('grid');
+    grid.innerHTML = ''; // Clear the grid
+
+    // Create a "Back" button
+    let backButton = document.createElement('button');
+    backButton.className = 'back-button';
+    backButton.textContent = 'Back to sets';
+    backButton.addEventListener('click', () => {
+        fetchSetData()
+        searchBar.removeChild(backButton)
+    });
+
+    // Append the "Back" button to the search bar div
+    let searchBar = document.getElementById('search-container');
+    searchBar.appendChild(backButton);
+
+    cards.forEach(card => {
+        let item = document.createElement('a');
+        item.className = 'grid-item--card';
+        item.href = `#`;
+        item.innerHTML = `
+            <img src="${card.images.small}" class="card-image" alt="${card.name}">
+        `;
+
         grid.appendChild(item);
     });
 }
@@ -146,3 +219,10 @@ window.onload = function() {
     document.getElementById('sort-options').selectedIndex = 0;
 };
 
+// Function to remove the "Back" button
+function removeBackButton() {
+    let backButton = document.querySelector('.back-button');
+    if (backButton) {
+        backButton.parentNode.removeChild(backButton);
+    }
+}

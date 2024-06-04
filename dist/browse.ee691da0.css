@@ -1126,7 +1126,7 @@ body {
     gap: 1rem;
 }
 
-#sort-options, #series-options {
+#sort-options, #series-options{
     width: 100%;
     max-width: max-content;
     padding: 1rem;
@@ -1144,10 +1144,35 @@ body {
     background-size: .65em auto, 100%;
 }
 
+#search-container .back-button {
+    width: 100%;
+    max-width: max-content;
+    padding: 1rem;
+    border: 1px solid var(--black);
+    border-radius: 5px;
+    font-family: Goldplay;
+    font-size: 1.6rem;
+    color: var(--black);
+    padding: 1rem 2.5rem 1rem 1rem; /* Increase the right padding */
+    background-color: var(--yellow);
+    appearance: none; /* Remove the default browser styles */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 4"><path fill="black" d="M0 2L2 0v4L0 2z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: left .7em center; 
+    background-size: .65em auto;
+    padding-left: 2rem;
+    cursor: pointer;
+}
+
+.grid-container {
+    display: flex;
+    justify-content: center;
+}
+
 #grid {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
     gap: 1rem;
     margin: 2rem;
 }
@@ -1193,6 +1218,24 @@ body {
     width: 100%;
     margin-top: 1rem;
     
+}
+
+#grid .grid-item--card {
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+    height: auto;
+}
+
+#grid .grid-item--card img {
+    display: block;
+}
+
+#grid .grid-item--card:hover {
+    transform: translateY(-5px); /* Move Up */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Increase the drop shadow when hovered */
+}
+
+.loading-message {
+    width: 5rem;
 }
 
 

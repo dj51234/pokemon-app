@@ -168,15 +168,11 @@ function reloadCSS() {
   }, 50);
 }
 module.exports = reloadCSS;
-},{"./bundle-url":"node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"styles/card-styles.css":[function(require,module,exports) {
+},{"./bundle-url":"node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"styles/styles.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"styles/styles.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"./card-styles.css":"styles/card-styles.css","./..\\fonts\\Goldplay-Thin.ttf":[["Goldplay-Thin.7c23da0e.ttf","fonts/Goldplay-Thin.ttf"],"fonts/Goldplay-Thin.ttf"],"./..\\fonts\\Goldplay-Light.ttf":[["Goldplay-Light.78304e2b.ttf","fonts/Goldplay-Light.ttf"],"fonts/Goldplay-Light.ttf"],"./..\\fonts\\Goldplay-Regular.ttf":[["Goldplay-Regular.5ca240ee.ttf","fonts/Goldplay-Regular.ttf"],"fonts/Goldplay-Regular.ttf"],"./..\\fonts\\Goldplay-Medium.ttf":[["Goldplay-Medium.6ea1b7c1.ttf","fonts/Goldplay-Medium.ttf"],"fonts/Goldplay-Medium.ttf"],"./..\\fonts\\Goldplay-SemiBold.ttf":[["Goldplay-SemiBold.a0a0c635.ttf","fonts/Goldplay-SemiBold.ttf"],"fonts/Goldplay-SemiBold.ttf"],"./..\\fonts\\Goldplay-Bold.ttf":[["Goldplay-Bold.e8a93879.ttf","fonts/Goldplay-Bold.ttf"],"fonts/Goldplay-Bold.ttf"],"./..\\fonts\\Goldplay-Black.ttf":[["Goldplay-Black.9c3890dc.ttf","fonts/Goldplay-Black.ttf"],"fonts/Goldplay-Black.ttf"],"./..\\assets\\bg.webp":[["bg.438cdaa6.webp","assets/bg.webp"],"assets/bg.webp"],"./..\\assets\\community.jpg":[["community.f2fc81ed.jpg","assets/community.jpg"],"assets/community.jpg"],"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./..\\fonts\\Goldplay-Thin.ttf":[["Goldplay-Thin.7c23da0e.ttf","fonts/Goldplay-Thin.ttf"],"fonts/Goldplay-Thin.ttf"],"./..\\fonts\\Goldplay-Light.ttf":[["Goldplay-Light.78304e2b.ttf","fonts/Goldplay-Light.ttf"],"fonts/Goldplay-Light.ttf"],"./..\\fonts\\Goldplay-Regular.ttf":[["Goldplay-Regular.5ca240ee.ttf","fonts/Goldplay-Regular.ttf"],"fonts/Goldplay-Regular.ttf"],"./..\\fonts\\Goldplay-Medium.ttf":[["Goldplay-Medium.6ea1b7c1.ttf","fonts/Goldplay-Medium.ttf"],"fonts/Goldplay-Medium.ttf"],"./..\\fonts\\Goldplay-SemiBold.ttf":[["Goldplay-SemiBold.a0a0c635.ttf","fonts/Goldplay-SemiBold.ttf"],"fonts/Goldplay-SemiBold.ttf"],"./..\\fonts\\Goldplay-Bold.ttf":[["Goldplay-Bold.e8a93879.ttf","fonts/Goldplay-Bold.ttf"],"fonts/Goldplay-Bold.ttf"],"./..\\fonts\\Goldplay-Black.ttf":[["Goldplay-Black.9c3890dc.ttf","fonts/Goldplay-Black.ttf"],"fonts/Goldplay-Black.ttf"],"./..\\assets\\bg.webp":[["bg.438cdaa6.webp","assets/bg.webp"],"assets/bg.webp"],"./..\\assets\\community.jpg":[["community.f2fc81ed.jpg","assets/community.jpg"],"assets/community.jpg"],"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -201,7 +197,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57416" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62192" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

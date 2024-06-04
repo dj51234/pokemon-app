@@ -1,4 +1,4 @@
-@import url("./card-styles.css");
+
 
 @font-face {
     font-family: Goldplay;
@@ -46,6 +46,7 @@
 :root {
     font-size: 62.5%;
     --yellow: rgb(255, 225, 101);
+    --yellow-transparent: rgba(255, 225, 101, .3);
     --pink: rgba(255, 84, 226, 1);
     --white: rgb(244, 244, 245);
     --subtext: rgb(157, 157, 158);
@@ -73,7 +74,7 @@ body {
 
 .header-wrap--secondary {
     background-color: var(--black);
-    border-bottom: 1px solid var(--white);
+    border-bottom: 1px solid var(--yellow-transparent);
     padding: .5rem;
 }
 
