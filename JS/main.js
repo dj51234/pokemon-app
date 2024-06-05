@@ -118,9 +118,7 @@ function displaySets(filteredSets) {
         grid.appendChild(item);
     });
 }
-// pokemon.card.find('base1-1').then(card => {
-//     console.log(card) // "Charizard"
-// })
+
 function fetchCardData(cardIds) {
     let grid = document.getElementById('grid');
     
@@ -160,13 +158,20 @@ function displayCards(cards) {
     searchBar.appendChild(backButton);
 
     cards.forEach(card => {
+        console.log(card)
         let item = document.createElement('a');
         item.className = 'grid-item--card';
         item.href = `#`;
-        item.innerHTML = `
-            <img src="${card.images.small}" class="card-image" alt="${card.name}">
-        `;
+        item.style.backgroundImage = `url(${card.images.small})`; // Set the background image of the anchor tag
 
+        // Add a data-rarity attribute with the card's rarity
+        item.setAttribute('data-rarity', card.rarity.toLowerCase());
+
+        let img = document.createElement('img');
+        img.src = card.images.small; // Set the src of the img tag
+        img.style.visibility = 'hidden'; // Hide the img tag
+
+        item.appendChild(img);
         grid.appendChild(item);
     });
 }
@@ -226,3 +231,4 @@ function removeBackButton() {
         backButton.parentNode.removeChild(backButton);
     }
 }
+

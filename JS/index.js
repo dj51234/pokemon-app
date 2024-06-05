@@ -8,7 +8,7 @@ const card = document.querySelector('.pokemon-card');
 cardContainer.addEventListener('mousemove', (event) => {
   const rect = cardContainer.getBoundingClientRect();
   const xAxis = (rect.width / 2 - (event.clientX - rect.left)) / 15;
-  const yAxis = -(rect.height / 2 - (event.clientY - rect.top)) / 15;
+  const yAxis = (rect.height / 2 - (event.clientY - rect.top)) / 15;
   card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
 });
 

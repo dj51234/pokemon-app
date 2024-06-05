@@ -4589,9 +4589,6 @@ function displaySets(filteredSets) {
     grid.appendChild(item);
   });
 }
-// pokemon.card.find('base1-1').then(card => {
-//     console.log(card) // "Charizard"
-// })
 function fetchCardData(cardIds) {
   var grid = document.getElementById('grid');
 
@@ -4629,10 +4626,19 @@ function displayCards(cards) {
   var searchBar = document.getElementById('search-container');
   searchBar.appendChild(backButton);
   cards.forEach(function (card) {
+    console.log(card);
     var item = document.createElement('a');
     item.className = 'grid-item--card';
     item.href = "#";
-    item.innerHTML = "\n            <img src=\"".concat(card.images.small, "\" class=\"card-image\" alt=\"").concat(card.name, "\">\n        ");
+    item.style.backgroundImage = "url(".concat(card.images.small, ")"); // Set the background image of the anchor tag
+
+    // Add a data-rarity attribute with the card's rarity
+    item.setAttribute('data-rarity', card.rarity.toLowerCase());
+    var img = document.createElement('img');
+    img.src = card.images.small; // Set the src of the img tag
+    img.style.visibility = 'hidden'; // Hide the img tag
+
+    item.appendChild(img);
     grid.appendChild(item);
   });
 }
@@ -4720,7 +4726,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62252" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55215" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

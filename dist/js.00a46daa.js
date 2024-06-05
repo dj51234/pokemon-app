@@ -125,7 +125,7 @@ var card = document.querySelector('.pokemon-card');
 cardContainer.addEventListener('mousemove', function (event) {
   var rect = cardContainer.getBoundingClientRect();
   var xAxis = (rect.width / 2 - (event.clientX - rect.left)) / 15;
-  var yAxis = -(rect.height / 2 - (event.clientY - rect.top)) / 15;
+  var yAxis = (rect.height / 2 - (event.clientY - rect.top)) / 15;
   card.style.transform = "rotateY(".concat(xAxis, "deg) rotateX(").concat(yAxis, "deg)");
 });
 cardContainer.addEventListener('mouseenter', function (event) {
@@ -209,7 +209,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62252" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55215" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

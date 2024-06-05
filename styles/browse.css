@@ -158,6 +158,7 @@ body {
     margin: 2rem;
 }
 
+
 #grid .grid-item {
     flex: 1 0 20%; /* Each item will take up 20% of the row width */
     display: flex;
@@ -204,16 +205,48 @@ body {
 #grid .grid-item--card {
     transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
     height: auto;
+    position: relative;
+    background-repeat: no-repeat;
+    overflow: hidden;
 }
 
-#grid .grid-item--card img {
+#grid .grid-item--card::after {
+    content: "";
     display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background: url(../assets/sparkles.webp) no-repeat center center, url(../assets/holo.webp) no-repeat center center;
+    mix-blend-mode: color-dodge;
+    opacity: 0;
+    border-radius: 30px;
+    overflow: hidden;
 }
 
-#grid .grid-item--card:hover {
-    transform: translateY(-5px); /* Move Up */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Increase the drop shadow when hovered */
+#grid .grid-item--card[data-rarity]:not([data-rarity="rare"]):not([data-rarity="common"]):not([data-rarity="uncommon"])::after {
+    opacity: 1;
 }
+
+.card-image {
+    display: block;
+    
+}
+
+/* #grid .grid-item--card .card-image::after {
+    content: "";
+    display: block;
+    padding-top: 100%; 
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+} */
+
+
+
 
 .loading-message {
     width: 5rem;
